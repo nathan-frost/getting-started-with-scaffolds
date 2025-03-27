@@ -67,6 +67,7 @@
     </h2>
 
     <form action="/movies/<%= @the_movie.id %>"  method="post" data-turbo="false">
+
       <input type="hidden" name="_method" value="patch">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
