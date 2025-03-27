@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   
     def new
+      @the_movie = Movie.new
       render template: "movies/new"
     end 
   
@@ -31,11 +32,11 @@ class MoviesController < ApplicationController
     the_movie = Movie.new
     the_movie.title = params.fetch("query_title")
     the_movie.description = params.fetch("query_description")
-    the_movie.released = params.fetch("query_released")
+    the_movie.released = params.fetch("query_released", false)
 
     if the_movie.valid?
       the_movie.save
-      redirect_to("/movies", { :notice => "Movie created successfully." })
+      redirect_to("/movies", { :notice => "Movie was successfully created" })
     else
       redirect_to("/movies", { :alert => the_movie.errors.full_messages.to_sentence })
     end
